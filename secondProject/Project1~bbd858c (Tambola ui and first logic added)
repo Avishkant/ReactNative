@@ -1,0 +1,21 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import Flex from './Components/Flex'
+
+const App = () => {
+  return (
+    <View>
+      <Text style={styles.heading}>App by Avishkant 123</Text>
+      <Flex />
+    </View>
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create({
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+})
