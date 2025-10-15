@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert, Button } from 'react-native'
 
 // Try to load AsyncStorage if available; fall back to a no-op in-memory implementation so tests
 // or environments without the native module don't fail. Install '@react-native-async-storage/async-storage'
@@ -54,7 +54,7 @@ const TambolaScreen = () => {
     const rows = checkRowComplete(ticket, called)
     if (rows[rowIndex]) {
       Alert.alert('Claim', `Row ${rowIndex + 1} is complete!`)
-    } else {
+      } else {
       Alert.alert('Claim', `Row ${rowIndex + 1} is NOT complete.`)
     }
   }
@@ -143,17 +143,23 @@ const TambolaScreen = () => {
   }, [last])
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Tambola (Demo)</Text>
+  <ScrollView contentContainerStyle={[styles.container, { flexGrow: 1 }]} style={{ backgroundColor: '#faed8e' }}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Tambola</Text>
+      </View>
 
   <Ticket ticket={ticket} calledNumbers={called} onCellPress={toggleCalled} />
 
       <View style={styles.controls}>
-        <Button title="Draw Number" onPress={onDraw} disabled={!bag.length || fullHouse} />
-        <View style={{ width: 8 }} />
-        <Button title="New Ticket" onPress={onNewTicket} />
-        <View style={{ width: 8 }} />
-        <Button title="Reset Game" color="#b00020" onPress={confirmReset} />
+        <TouchableOpacity style={styles.primaryButton} onPress={onDraw} disabled={!bag.length || fullHouse}>
+          <Text style={styles.primaryButtonText}>Draw</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.secondaryButton} onPress={onNewTicket}>
+          <Text style={styles.secondaryButtonText}>New Ticket</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.dangerButton} onPress={confirmReset}>
+          <Text style={styles.dangerButtonText}>Reset</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.info}>
@@ -187,13 +193,21 @@ const TambolaScreen = () => {
 
 const styles = StyleSheet.create({
   container: { padding: 16 },
-  title: { fontSize: 22, fontWeight: '800', marginBottom: 12, color: '#111' },
+    title: { fontSize: 28, fontWeight: '900', marginBottom: 0, color: '#4a148c' },
+    subtitle: { fontSize: 14, color: '#6a1b9a', marginTop: 4 },
+    header: { alignItems: 'center', marginBottom: 12, padding: 12, backgroundColor: '#fff', borderRadius: 12, elevation: 2 },
   controls: { marginVertical: 12, flexDirection: 'row', gap: 8 },
   info: { marginTop: 12, backgroundColor: '#fafafa', padding: 12, borderRadius: 8 },
   chipsRow: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 8 },
-  chip: { backgroundColor: '#1976d2', paddingVertical: 6, paddingHorizontal: 8, borderRadius: 12, margin: 4 },
+  chip: { backgroundColor: '#7b1fa2', paddingVertical: 6, paddingHorizontal: 8, borderRadius: 12, margin: 4 },
   chipText: { fontSize: 12, color: '#fff' },
   claims: { marginTop: 12 },
+  primaryButton: { backgroundColor: '#af44b5', paddingHorizontal: 12, paddingVertical: 10, borderRadius: 10, marginRight: 8 },
+  primaryButtonText: { color: '#fff', fontWeight: '700' },
+  secondaryButton: { backgroundColor: '#fff', paddingHorizontal: 12, paddingVertical: 10, borderRadius: 10, marginRight: 8, borderWidth: 1, borderColor: '#ddd' },
+  secondaryButtonText: { color: '#4a148c', fontWeight: '700' },
+  dangerButton: { backgroundColor: '#ff5252', paddingHorizontal: 12, paddingVertical: 10, borderRadius: 10 },
+  dangerButtonText: { color: '#fff', fontWeight: '700' },
 })
 
 export default TambolaScreen

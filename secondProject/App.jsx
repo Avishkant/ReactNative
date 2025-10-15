@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import TambolaScreen from './Components/TambolaScreen'
 
 const App = () => {
   return (
-    <View>
-      {/* <Text style={styles.heading}>App by Avishkant 123</Text> */}
+    <View style={styles.container}>
       <TambolaScreen />
     </View>
   )
@@ -14,8 +13,5 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
+  container: { flex: 1 },
 })
