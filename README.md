@@ -1,83 +1,77 @@
-# ReactNative (multi-project monorepo)
+﻿# Android Development Workspace
 
-This repository contains multiple small React Native example projects. The repo root now hosts two project folders:
+Welcome — this workspace contains multiple small, focused React Native projects and utilities I build for demos, experiments and small product features. Each project is self-contained and intended to be easy to run, test, and reuse.
 
-- `FirstProject/`
-- `secondProject/`
+## At a glance
 
-I replaced the remote `main` with these two folders as requested. A backup of the previous `main` is available on the remote branch `remote-main-backup`. Local backups of nested `.git` directories are saved as `FirstProject_git_backup/` and `secondProject_git_backup/` in the repo root (if present).
+- Purpose: mobile utilities (localization, numeric transformation, small finance tools)
+- Primary projects:
+  - **NumToWords** — number-to-words utility (English/Hindi) + React Native demo app. Includes screenshots and build scripts.
+  - **VillIntCalci** — village interest / payment calculator app with clear UX and pure TS calculation helpers.
+- All projects have a local `android/` (and where applicable `ios/`) folder — run them independently.
 
----
+## Quick start (developer)
 
-## How this repo is organized
-
-Each project lives in its own top-level folder and should be runnable independently. Keep each project's own `package.json` so you can install dependencies and run them separately.
-
-Future projects: add new folders at the repository root (for example `thirdProject/`) and commit/push them the same way.
-
----
-
-## Projects and how to run them (PowerShell examples)
-
-### FirstProject
-Location: `FirstProject/`
-
-Basic steps to run locally on Windows (PowerShell):
+1. Pick the project directory (example: `NumToWords`)
 
 ```powershell
-cd "G:\Code_Playground\Android Developement\FirstProject"
-# install dependencies if needed
+Set-Location -LiteralPath 'G:\Code_Playground\Android Developement\NumToWords'
 npm install
-# start Metro bundler
-npx react-native start
-# in a new terminal, run on Android device/emulator
-npx react-native run-android
-# Or to run on iOS (macOS only):
-# npx react-native run-ios
+npm start        # starts Metro
+npm run android  # builds & runs on connected Android device/emulator
 ```
 
-Run tests (if present):
+2. Repeat the pattern for `VillIntCalci` or any other project in this workspace.
+
+## Build a shareable Android APK
+
+From the target project's `android/` folder (Windows PowerShell):
 
 ```powershell
-cd "G:\Code_Playground\Android Developement\FirstProject"
-npm test
+Set-Location -LiteralPath 'G:\Code_Playground\Android Developement\<PROJECT_NAME>\android'
+.\gradlew.bat assembleRelease
+# The generated APK will be at: <PROJECT_NAME>\android\app\build\outputs\apk\release\app-release.apk
 ```
 
+Notes on signing:
+- Some projects here use the debug keystore for quick `assembleRelease` runs. That produces installable APKs but NOT Play-Store-signed packages. For production, generate a release keystore and configure `android/gradle.properties` and `android/app/build.gradle` signing settings.
 
-### secondProject
-Location: `secondProject/`
+## Tests & utilities
 
-Basic steps (PowerShell):
+- Unit tests live under each project's `__tests__/` folder. Run `npm test` from the project root.
+- Core reusable logic is placed under `src/utils` inside projects so it can be extracted or reused easily.
+
+## Troubleshooting tips
+
+- If you get long-path or CMake errors on Windows, create a short junction and build from it (example used during development):
 
 ```powershell
-cd "G:\Code_Playground\Android Developement\secondProject"
-npm install
-npx react-native start
-# in another terminal
-npx react-native run-android
+cmd /c mklink /J "C:\numproj" "G:\Code_Playground\Android Developement\NumToWords"
+Set-Location -LiteralPath 'C:\numproj\android'
+.\gradlew.bat assembleRelease
 ```
 
-Run tests:
+- If Kotlin/Gradle incremental cache issues appear, try:
 
 ```powershell
-cd "G:\Code_Playground\Android Developement\secondProject"
-npm test
+.\gradlew.bat --stop
+.\gradlew.bat clean
 ```
+
+## Repository notes (for reviewers)
+
+- The repository root is this folder: `G:\Code_Playground\Android Developement`.
+- Projects are subfolders. If a project should be its own repository, split or create a separate repo with its folder as root.
+- I keep README files per project; see `NumToWords/README.md` and `VillIntCalci/README.md` for project-specific documentation and screenshots.
+
+## Want me to push these changes?
+
+I created a backup of the previous README as `README.md.bak.$time` in this folder.
+
+If you want, I can:
+- Stage and commit this updated README and push to `origin/main` (you may be prompted for credentials).
+- Add a short changelog entry or add captions under screenshots in project READMEs.
 
 ---
 
-## Notes & tips
-
-- Remote backup: the old remote main is stored in branch `remote-main-backup` on origin. You can restore or inspect it there.
-- Local nested git backups: If your projects previously had their own `.git` folders, I moved them into `FirstProject_git_backup/` and `secondProject_git_backup/`. If you want to restore their independent histories later, move the saved `.git` back into the project folder.
-- If you want to preserve independent history for each project on GitHub, consider creating separate repositories for each project or using `git subtree`/submodule workflows. I can help with that.
-- For subsequent projects, create a new top-level folder (e.g., `thirdProject/`), add the project files and `package.json`, then commit & push.
-
----
-
-If you want, I can also:
-- Create a small CI workflow or GitHub Actions template to run tests for each project on push.
-- Convert the local nested git backups into separate GitHub repos and re-link them as submodules.
-- Add a top-level script to run any project's Metro server from the repo root.
-
-Which of these (if any) should I do next?
+If this looks good reply with **commit** (to stage/commit & optionally push) or **edit** with any wording adjustments you prefer.

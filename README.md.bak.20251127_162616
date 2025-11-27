@@ -1,0 +1,80 @@
+﻿# Android Developement Workspace
+
+This repository contains multiple small React Native projects and utilities I use for experimentation and demos. The workspace is focused on mobile utilities, language-aware features, and small fintech-style tools. It is arranged so each project is self-contained (its own `android/` and `ios/` folders) and also easy to include in larger workspaces.
+
+## Projects in this workspace
+
+- `NumToWords` — React Native app + `numberToWords` utility (English/Hindi, Western & Indian numbering). See `NumToWords/README.md` for details and screenshots.
+- `VillIntCalci` — Lightweight interest/calculator app for village/financial use-cases. See `VillIntCalci/README.md` for screenshots and usage.
+- Other folders: `FirstProject`, `secondProject`, etc. (each may include their own README and native configuration).
+
+## Quick Workspace Notes (for a reviewer or recruiter)
+
+- Each project is runnable independently: change into the project folder and follow its README.
+- Projects use the React Native CLI and Gradle for Android. Node/npm is required for JS dependencies.
+- I intentionally keep utility logic (pure functions) under `src/utils` so they are easy to test and re-use across apps.
+
+## How to run a project (common steps)
+
+From workspace root pick the project folder, for example `NumToWords`:
+
+```powershell
+Set-Location -LiteralPath 'G:\Code_Playground\Android Developement\NumToWords'
+npm install
+npm start   # starts Metro
+npm run android   # builds & runs on connected Android device/emulator
+```
+
+Repeat the same pattern for `VillIntCalci`:
+
+```powershell
+Set-Location -LiteralPath 'G:\Code_Playground\Android Developement\VillIntCalci'
+npm install
+npm start
+npm run android
+```
+
+## Release APKs (shareable)
+
+I generate release APKs via the Gradle `assembleRelease` task. Example (Windows PowerShell):
+
+```powershell
+Set-Location -LiteralPath 'G:\Code_Playground\Android Developement\<PROJECT_FOLDER>\android'
+.\gradlew.bat assembleRelease
+# The output APK will be at: <PROJECT_FOLDER>\android\app\build\outputs\apk\release\app-release.apk
+```
+
+Notes:
+- Some projects in this workspace (e.g. `NumToWords`) may use the debug keystore for quick release builds. That APK is installable but not Play-Store-signed. For production, generate a keystore and configure `android/gradle.properties` and `android/app/build.gradle` signing settings.
+- If you hit Windows path-length or CMake errors, building from a short junction path (e.g. `C:\numtowords`) has been used successfully here.
+
+## Tests
+
+Run unit tests from a project root if available:
+
+```bash
+npm test
+```
+
+## Development tips & troubleshooting
+
+- If Gradle/Kotlin incremental cache errors appear, try:
+
+```powershell
+.\gradlew.bat --stop
+.\gradlew.bat clean
+```
+
+- For Android native issues, open the project in Android Studio for interactive debugging.
+- Keep Node, Java (JDK), Android SDK, and Gradle up-to-date to avoid compatibility problems.
+
+## Source of truth & git
+
+- The repository root is `G:\Code_Playground\Android Developement` (this folder). Individual projects are stored as subfolders. If you'd like a project to be its own repository, create a top-level `.git` there or split the folder.
+
+## Next actions I can do for you
+
+- Commit the new workspace README (`README.md`) and the project READMEs I updated (`NumToWords`, `VillIntCalci`). I will show the staged diff before committing.
+- Add a short changelog entry.
+- Add captions under screenshots in the project READMEs and push to remote.
+
