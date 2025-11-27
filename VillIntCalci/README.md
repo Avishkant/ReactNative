@@ -20,7 +20,7 @@ A clean, focused React Native utility app for village interest calculations — 
   <img src="src/screenshots/Screenshot_2025-11-27-15-57-56-415_com.villintcalci.jpg" alt="Alternate view" width="220" style="margin:6px;" />
 </p>
 
-## Quick overview (for recruiters)
+## Quick overview 
 
 VillIntCalci is a small, well-scoped mobile app that demonstrates practical mobile UX for financial tasks in low-connectivity environments. It showcases:
 
@@ -65,14 +65,8 @@ Set-Location -LiteralPath 'android'
 
 - Unit tests are available under `__tests__/` — run `npm test`.
 
-## Contributing & license
+## Contributing 
 
-- Add a `LICENSE` if you plan to publish.
 - PRs welcome: include tests for calculation changes and a short description of the business rules.
 
----
-
-If you'd like, I can also:
-
-- Add short captions below each screenshot in the README for clarity.
 - Commit this README update for you.
