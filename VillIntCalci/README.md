@@ -1,97 +1,78 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+﻿# VillIntCalci
 
-# Getting Started
+A clean, focused React Native utility app for village interest calculations — modern UI, clear results, and offline-friendly logic.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Highlights
 
-## Step 1: Start Metro
+- Purpose-built calculator (interest / payments / quick financial summaries)
+- Clean mobile UI with localization-ready strings
+- Lightweight, testable utility functions in `src/utils`
+- Screenshots below show the app screens and example flows
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Screenshots
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+<p align="center">
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-32-916_com.villintcalci.jpg" alt="Home" width="220" style="margin:6px;" />
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-41-102_com.villintcalci.jpg" alt="Input form" width="220" style="margin:6px;" />
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-44-301_com.villintcalci.jpg" alt="Calculation result" width="220" style="margin:6px;" />
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-48-221_com.villintcalci.jpg" alt="History or summary" width="220" style="margin:6px;" />
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-52-187_com.villintcalci.jpg" alt="Settings" width="220" style="margin:6px;" />
+  <img src="src/screenshots/Screenshot_2025-11-27-15-57-56-415_com.villintcalci.jpg" alt="Alternate view" width="220" style="margin:6px;" />
+</p>
 
-```sh
-# Using npm
+## Quick overview (for recruiters)
+
+VillIntCalci is a small, well-scoped mobile app that demonstrates practical mobile UX for financial tasks in low-connectivity environments. It showcases:
+
+- Clear input validation and friendly error messages
+- Deterministic calculation logic implemented in plain TypeScript functions
+- Readable, maintainable components suitable for fast iteration
+
+## Developer: run & build
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Start Metro
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+3. Run on Android
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+4. Build release APK (Windows PowerShell)
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```powershell
+Set-Location -LiteralPath 'android'
+.\gradlew.bat assembleRelease
+# APK at android\app\build\outputs\apk\release\app-release.apk
 ```
 
-Then, and every time you update your native dependencies, run:
+## Where the logic lives
 
-```sh
-bundle exec pod install
-```
+- `src/utils` — calculation helpers and pure functions (easy to test)
+- `src/screens` — screen components and UI layout
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Testing
 
-```sh
-# Using npm
-npm run ios
+- Unit tests are available under `__tests__/` — run `npm test`.
 
-# OR using Yarn
-yarn ios
-```
+## Contributing & license
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+- Add a `LICENSE` if you plan to publish.
+- PRs welcome: include tests for calculation changes and a short description of the business rules.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+---
 
-## Step 3: Modify your app
+If you'd like, I can also:
 
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Add short captions below each screenshot in the README for clarity.
+- Commit this README update for you.
