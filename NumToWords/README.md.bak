@@ -1,0 +1,101 @@
+﻿**NumToWords**
+
+This is a small React Native app that converts numeric values into readable words. It includes a utility with support for:
+
+- **Numbering systems**: `western` (thousand/million) and `indian` (thousand/lakh/crore).
+- **Languages**: English (`en`) and Hindi (`hi`).
+- **Features**: handles negative numbers, fractional (decimal) parts, and trims leading zeros.
+
+The core conversion utility is implemented at `src/utils/numberToWords.ts` and exported as `numberToWords` (supports an options object `{ system?: 'western' | 'indian', lang?: 'en' | 'hi' }`).
+
+**Quick Start**
+
+- **Install dependencies**: `npm install` (or `yarn`).
+- **Run Metro**: `npm start`.
+- **Run on Android (dev)**: `npm run android`.
+
+**Build Release APK (shareable)**
+
+- From the project root run (Windows PowerShell):
+
+```powershell
+Set-Location -LiteralPath 'android'
+.\gradlew.bat assembleRelease
+```
+
+- The generated APK will be at: `android/app/build/outputs/apk/release/app-release.apk`.
+- Note: this project currently uses the debug keystore for release builds by default (`android/app/build.gradle` uses `signingConfigs.debug`). The produced `app-release.apk` is installable on devices but is not signed with a production key suitable for Play Store publishing.
+
+**Create a proper release key**
+
+If you want a production-signed APK (recommended for distribution to users or Play Store):
+
+1. Generate a keystore (example):
+
+```powershell
+keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+```
+
+2. Place the keystore in `android/app/` and add the following to `android/gradle.properties` (or your environment):
+
+```
+MYAPP_RELEASE_STORE_FILE=my-release-key.keystore
+MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+MYAPP_RELEASE_STORE_PASSWORD=<store-password>
+MYAPP_RELEASE_KEY_PASSWORD=<key-password>
+```
+
+3. Update `android/app/build.gradle`'s `signingConfigs.release` to reference those properties and run the `assembleRelease` task again.
+
+**Repository Notes**
+
+- This folder (`NumToWords`) is a project subfolder inside the parent workspace `G:\Code_Playground\Android Developement`.
+- The repository root is the parent folder. `NumToWords` has been converted to a normal folder (no nested `.git`). If you want `NumToWords` tracked as part of the parent repo, stage/commit as needed from the parent directory.
+
+**Project Structure (key files)**
+
+- `App.tsx` : App entry point and UI.
+- `android/` : Native Android project and Gradle config.
+- `ios/` : iOS project (for macOS builds).
+- `src/utils/numberToWords.ts` : number-to-words implementation (supports `western`/`indian`, `en`/`hi`).
+- `__tests__/` : Unit tests.
+
+**Useful Commands**
+
+- Install deps: `npm install`
+- Run dev on Android: `npm run android`
+- Build release APK: (see steps above)
+- Install built APK on device via ADB:
+
+```powershell
+adb install -r "android\\app\\build\\outputs\\apk\\release\\app-release.apk"
+```
+
+**Troubleshooting**
+
+- If you see path-length or CMake errors on Windows, create a short junction to the project root and build from there (example used during development):
+
+```powershell
+cmd /c mklink /J "C:\numtowords" "G:\Code_Playground\Android Developement\NumToWords"
+Set-Location -LiteralPath 'C:\numtowords\android'
+.\gradlew.bat assembleRelease
+```
+
+- If Kotlin/CMake incremental cache errors occur, try stopping Gradle daemon and cleaning build caches:
+
+```powershell
+.\gradlew.bat --stop
+.\gradlew.bat clean
+```
+
+**License & Contributing**
+
+- This repository does not include a license file. Add `LICENSE` if you intend to publish or share publicly.
+- To contribute, open PRs from feature branches and include tests for the `numberToWords` utility where possible.
+
+---
+
+If you'd like, I can also:
+
+- Add usage examples for `numberToWords` to this README.
+- Commit the README update and the staged changes in the parent repository.
