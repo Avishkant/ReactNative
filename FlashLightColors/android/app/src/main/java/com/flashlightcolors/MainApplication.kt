@@ -4,8 +4,9 @@ import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
-import com.facebook.react.ReactNativeApplicationEntryPoint.loadReactNative
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
+import com.facebook.soloader.SoLoader
+import java.io.IOException
 
 class MainApplication : Application(), ReactApplication {
 
@@ -22,6 +23,13 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
-    loadReactNative(this)
+    // Initialize native libraries without loading the New Architecture entry point.
+    // We avoid calling DefaultNewArchitectureEntryPoint.load() here so the Fabric
+    // renderer / new architecture initialization won't run at app startup.
+    try {
+      SoLoader.init(this, /* nativeExopackage */ false)
+    } catch (error: IOException) {
+      throw RuntimeException(error)
+    }
   }
 }
