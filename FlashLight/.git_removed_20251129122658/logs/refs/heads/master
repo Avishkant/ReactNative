@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 290e54e64a63bcfb4dafab517e47c5138a4943e2 Avishkant <avishkantpatidar22@gmail.com> 1764330311 +0530	commit (initial): Import FlashLight project
+290e54e64a63bcfb4dafab517e47c5138a4943e2 6e5f1527673706c4d3ad5368237fdc43fe0f7924 Avishkant <avishkantpatidar22@gmail.com> 1764385463 +0530	commit: screen: restore brightness on close; use native result for ScreenBrightness
+6e5f1527673706c4d3ad5368237fdc43fe0f7924 c087903c2fd85c4a9485d77f8575f47794634eae Avishkant <avishkantpatidar22@gmail.com> 1764385746 +0530	commit: android: run setWindowBrightness on UI thread; improve logging
+c087903c2fd85c4a9485d77f8575f47794634eae 8d06a26df572b1b234023d5cb02b9bb68268e3e6 Avishkant <avishkantpatidar22@gmail.com> 1764385828 +0530	commit: fix(android): use getCurrentActivity() in ScreenBrightnessModule
+8d06a26df572b1b234023d5cb02b9bb68268e3e6 327b7b0fea7be2cc6538f32459aa9fc109bb35ae Avishkant <avishkantpatidar22@gmail.com> 1764386007 +0530	commit: ui: remove navbar brightness debug button
+327b7b0fea7be2cc6538f32459aa9fc109bb35ae a3c2cf59164e50dd1fdeccd3c6440f9feba96d9f Avishkant <avishkantpatidar22@gmail.com> 1764386191 +0530	commit: ui: redesign home card and large action buttons
+a3c2cf59164e50dd1fdeccd3c6440f9feba96d9f c97fbd00c3577e57078f29dd90a02a3833f4854e Avishkant <avishkantpatidar22@gmail.com> 1764386731 +0530	commit: fix: restore updatePermissionStatus and fix catch param
+c97fbd00c3577e57078f29dd90a02a3833f4854e ad220565e4144064b83fe06525ea339103937f04 Avishkant <avishkantpatidar22@gmail.com> 1764386869 +0530	commit: ui: remove navbar brightness debug button (cleanup)
+ad220565e4144064b83fe06525ea339103937f04 d5abec0ca04b470a1df31983c6057ade5a4d3ecd Avishkant <avishkantpatidar22@gmail.com> 1764391417 +0530	commit: assemble release generated
